@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("#bu").hide();
+        $("#bi").show();
+        $("#status").show();
+        $.get("https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400", function(data, status){
+            // alert("Data: " + data.results.day_length + "\nStatus: " + status);
+            // console.log(data.status == 'OK');
+            $("#status").text("Data status is "+ data.status);
+            if(data.status == 'OK'){
+                $("#demo").append("<div><strong>"+"sunrise at "+"</strong>"+data.results.sunrise+"</div>");
+                $("#demo").append("<div><strong>"+"sunset at "+"</strong>"+data.results.sunset+"</div><hr>");
+                $("#demo").append("<div><strong>"+"day_lenght is "+"</strong>"+data.results.day_length+"</div><hr>");
+                $("#demo").append("<div><strong>"+"solar_noon is "+"</strong>"+data.results.solar_noon+"</div><hr>");
+                $("#demo").append("<div><strong>"+"civil_twilight_begin at "+"</strong>"+data.results.civil_twilight_begin+"</div>");
+                $("#demo").append("<div><strong>"+"civil_twilight_end at "+"</strong>"+data.results.civil_twilight_end+"</div><hr>");
+                $("#demo").append("<div><strong>"+"nautical_twilight_begin at "+"</strong>"+data.results.nautical_twilight_begin+"</div>");
+                $("#demo").append("<div><strong>"+"nautical_twilight_end at "+"</strong>"+data.results.nautical_twilight_end+"</div><hr>");
+                $("#demo").append("<div><strong>"+"astronomical_twilight_begin at "+"</strong>"+data.results.astronomical_twilight_begin+"</div>");
+                $("#demo").append("<div><strong>"+"astronomical_twilight_end at "+"</strong>"+data.results.astronomical_twilight_end+"</div>");
+            }
+            
+        });
+    });
+});
+</script>
+<style>
+    *{
+        font-family: Microsoft JhengHei;
+        }
+    #bi{
+        display: none;
+    }
+    #status{
+        display:none;
+    }
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #eee;
+        color: rgb(0, 0, 0);
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Sunrise/sunset</h1> 
+        <p>secret data hshshs</p> 
+    </div>
+    <!-- add -->
+    <p ></p>
+    <p id="de"></p>
+    <!-- add -->
+    <div id="status" class="alert alert-success">connecting...</div>
+    <!-- add -->
+    <div class="panel panel-success" id="bi">
+        <div class="panel-heading"><strong>Secret Data</strong></div>
+        <div class="panel-body">
+            <h4 id="demo"></h4>
+        </div>
+    </div>
+<center>
+    <button id="bu" type="button" class="btn-lg btn-success">Get secret data</button>
+</center>
+
+<div class="footer">
+    <center>
+        cj is god. 
+    </center>
+</div>
+</body>
+</html>
